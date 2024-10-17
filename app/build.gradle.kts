@@ -3,8 +3,6 @@ plugins {
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
     id("kotlin-kapt")
-    id("com.google.dagger.hilt.android")
-    id("dagger.hilt.android.plugin")
 }
 
 android {
@@ -67,10 +65,17 @@ dependencies {
     // retrofit
     implementation(libs.retrofit)
     implementation(libs.converter.gson)
-    // Injection data
-    implementation(libs.hilt.android)
-    implementation(libs.androidx.hilt.navigation.compose)
-    kapt(libs.hilt.android.compiler)
+    // splash screen
+    implementation(libs.androidx.core.splashscreen)
+    // Room
+    implementation(libs.androidx.room.runtime)
+    annotationProcessor(libs.androidx.room.compiler)
+    implementation(libs.androidx.room.ktx)
+    // Gson
+    implementation(libs.gson)
+
+    // To use Kotlin annotation processing tool (kapt)
+    kapt(libs.androidx.room.compiler)
     implementation(libs.androidx.runtime.livedata)
     implementation(libs.coil.compose)
     testImplementation(libs.junit)

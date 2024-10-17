@@ -1,7 +1,7 @@
 package com.example.gameapp.api.repository
 
 import com.example.gameapp.api.interfaces.GameServices
-import com.example.gameapp.data.Game
+import com.example.gameapp.models.Game
 import retrofit2.awaitResponse
 
 class GameRepository (private val service: GameServices) {

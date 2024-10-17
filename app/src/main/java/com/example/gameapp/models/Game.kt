@@ -1,4 +1,4 @@
-package com.example.gameapp.data
+package com.example.gameapp.models
 
 // Object class for Game data
 data class Game(

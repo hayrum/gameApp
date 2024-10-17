@@ -30,8 +30,8 @@ import com.example.gameapp.BuildConfig
 import com.example.gameapp.api.RetrofitClient
 import com.example.gameapp.api.interfaces.GameServices
 import com.example.gameapp.api.repository.GameRepository
-import com.example.gameapp.data.Game
-import com.example.gameapp.viewmodels.dashboard.DetailGameViewModel
+import com.example.gameapp.models.Game
+import com.example.gameapp.viewmodels.detailgame.DetailGameViewModel
 
 @Composable
 fun DetailGameScreen(gameId: Int) {

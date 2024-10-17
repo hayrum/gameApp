@@ -18,7 +18,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
-import com.example.gameapp.data.Game
+import com.example.gameapp.models.Game
 
 @Composable
 fun GameItem(game: Game, onClick: (Game) -> Unit) {

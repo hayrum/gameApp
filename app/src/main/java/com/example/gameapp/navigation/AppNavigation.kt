@@ -1,26 +1,40 @@
 package com.example.gameapp.navigation
 
-import androidx.compose.runtime.Composable
-import androidx.navigation.compose.NavHost
+import androidx.navigation.NavController
+import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
-import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navigation
+import com.example.gameapp.navigation.routes.NavigationRoutes
 import com.example.gameapp.views.DashboardScreen
-import com.example.gameapp.views.DetailGameScreen
+import com.example.gameapp.views.SplashScreen
 
-
-@Composable
-fun AppNavigation() {
-    val navController = rememberNavController()
-    NavHost(
-        navController = navController,
-        startDestination = Screens.DashboardScreen.route
+/**
+ * Login, registration, forgot password screens nav graph builder
+ * (Unauthenticated user)
+ */
+fun NavGraphBuilder.unauthenticatedGraph(navController: NavController) {
+    navigation(
+        route = NavigationRoutes.Unauthenticated.NavigationRoute.route,
+        startDestination = NavigationRoutes.Unauthenticated.SplashScreen.route
     ) {
-        composable(route = Screens.DashboardScreen.route) {
-            DashboardScreen(navController = navController)
+        // Splash
+        composable(route = NavigationRoutes.Unauthenticated.SplashScreen.route) {
+            SplashScreen(navController = navController)
         }
-        composable(route = Screens.DetailGameScreen.route) { backStackEntry ->
-            val gameId = backStackEntry.arguments?.getString("gameId")?.toIntOrNull() ?: 0
-            DetailGameScreen(gameId = gameId)
+    }
+}
+
+/**
+ * Authenticated screens nav graph builder
+ */
+fun NavGraphBuilder.authenticatedGraph(navController: NavController) {
+    navigation(
+        route = NavigationRoutes.Authenticated.NavigationRoute.route,
+        startDestination = NavigationRoutes.Authenticated.DashboardScreen.route
+    ) {
+        // Dashboard
+        composable(route = NavigationRoutes.Authenticated.DashboardScreen.route) {
+            DashboardScreen(navController)
         }
     }
 }

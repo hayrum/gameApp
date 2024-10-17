@@ -1,10 +1,8 @@
 package com.example.gameapp.api.interfaces
 
-import com.example.gameapp.data.Game
+import com.example.gameapp.models.Game
 import retrofit2.Call
 import retrofit2.http.GET
-import retrofit2.http.POST
-import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface GameServices {

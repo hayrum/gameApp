@@ -1,10 +1,10 @@
-package com.example.gameapp.viewmodels.dashboard
+package com.example.gameapp.viewmodels.detailgame
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.gameapp.api.repository.GameRepository
-import com.example.gameapp.data.Game
+import com.example.gameapp.models.Game
 import kotlinx.coroutines.launch
 
 class DetailGameViewModel(private val gameRepository: GameRepository) : ViewModel() {
