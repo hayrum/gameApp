@@ -21,6 +21,7 @@ class GameMapper {
             freetogame_profile_url = entity.freetogame_profile_url ?: ""
         )
     }
+
     // Function when convert the one object to Entity.
     fun mapGameToEntity(game: Game): EntityGame {
         return EntityGame(
@@ -54,6 +55,24 @@ class GameMapper {
                 developer = game.developer,
                 release_date = game.release_date,
                 freetogame_profile_url = game.freetogame_profile_url
+            )
+        }
+    }
+
+    fun mapEntitiesToGames(entities: List<EntityGame>): List<Game> {
+        return entities.map { entity ->
+            Game(
+                id = entity.id,
+                title = entity.title ?: "",
+                thumbnail = entity.thumbnail ?: "",
+                short_description = entity.short_description ?: "",
+                game_url = entity.game_url ?: "",
+                genre = entity.genre ?: "",
+                platform = entity.platform ?: "",
+                publisher = entity.publisher ?: "",
+                developer = entity.developer ?: "",
+                release_date = entity.release_date ?: "",
+                freetogame_profile_url = entity.freetogame_profile_url ?: ""
             )
         }
     }

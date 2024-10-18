@@ -69,6 +69,9 @@ dependencies {
     implementation(libs.androidx.core.splashscreen)
     // Room
     implementation(libs.androidx.room.runtime)
+    implementation(libs.androidx.ui.test.junit4.android)
+    testImplementation(libs.junit.junit)
+    androidTestImplementation(libs.androidx.core.testing)
     annotationProcessor(libs.androidx.room.compiler)
     implementation(libs.androidx.room.ktx)
     // Gson
@@ -78,11 +81,14 @@ dependencies {
     kapt(libs.androidx.room.compiler)
     implementation(libs.androidx.runtime.livedata)
     implementation(libs.coil.compose)
+    // Test dependencies
     testImplementation(libs.junit)
+    testImplementation(libs.mockk)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
     androidTestImplementation(platform(libs.androidx.compose.bom))
     androidTestImplementation(libs.androidx.ui.test.junit4)
+    androidTestImplementation(libs.kotlinx.coroutines.test)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
 }
