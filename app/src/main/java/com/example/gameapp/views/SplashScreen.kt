@@ -1,6 +1,5 @@
 package com.example.gameapp.views
 
-import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -19,7 +18,6 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
@@ -32,9 +30,6 @@ import com.example.gameapp.data.database.GameDatabase
 import com.example.gameapp.data.repository.GameDataBaseRepository
 import com.example.gameapp.navigation.routes.NavigationRoutes
 import com.example.gameapp.viewmodels.splash.SplashViewModel
-import com.google.gson.Gson
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.flow.first
 
 @Composable
 fun SplashScreen(navController: NavController) {
@@ -87,8 +82,8 @@ fun Splash() {
     }
 }
 
-@Preview(showBackground = true)
-@Composable
-fun SplashPreview() {
-    Splash()
-}
+//@Preview(showBackground = true)
+//@Composable
+//fun SplashPreview() {
+//    Splash()
+//}

@@ -19,4 +19,17 @@ class GameDataBaseRepository(
     fun getAllGames(): Flow<List<EntityGame>> {
         return gameDao.getAllGames()
     }
+
+    fun getGameById(id: Int): Flow<EntityGame> {
+        return gameDao.getGameById(id)
+    }
+
+    suspend fun updateGame(game: EntityGame) {
+        gameDao.updateGame(game)
+    }
+
+    suspend fun deleteGame(game: EntityGame) {
+        gameDao.deleteGame(game)
+    }
+
 }

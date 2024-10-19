@@ -1,5 +1,8 @@
 package com.example.gameapp.views
 
+import android.app.Activity
+import android.content.Context
+import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.asPaddingValues
@@ -14,6 +17,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
@@ -36,14 +40,16 @@ fun DashboardScreen(navController: NavController) {
         DashboardViewModel(GameDataBaseRepository(gameDao = gameDao))
     }
     LoadView(viewModel, navController)
+    ExitApp(LocalContext.current)
 }
 
 @Composable
 fun LoadView(viewModel: DashboardViewModel, navController: NavController) {
     // Variable for text search into search bar.
     var searchText by remember { mutableStateOf("") }
+    val games by viewModel.games.observeAsState(emptyList())
     // Variable for filtering games.
-    val filteredGames = getFilteredGames(searchText, viewModel.games.value ?: emptyList())
+    val filteredGames = getFilteredGames(searchText, games)
     // This variable is used to scroll to the top of the list when the filtered games change.
     val listState = rememberLazyListState()
 
@@ -55,7 +61,7 @@ fun LoadView(viewModel: DashboardViewModel, navController: NavController) {
         )
     ) {
         SearchBar(searchText, onSearchTextChange = { searchText = it })
-        LoadInformationGames(filteredGames, navController, listState)
+        LoadInformationGames(filteredGames, navController, listState, viewModel)
     }
     LaunchedEffect(key1 = filteredGames) { // Observe filteredGames
         if (filteredGames.isNotEmpty()) {
@@ -68,7 +74,8 @@ fun LoadView(viewModel: DashboardViewModel, navController: NavController) {
 fun LoadInformationGames(
     listGames: List<Game>,
     navController: NavController,
-    listState: LazyListState
+    listState: LazyListState,
+    viewModel: DashboardViewModel
 ) {
     // Create LazyColumn (recyclerView)
     LazyColumn(
@@ -77,7 +84,7 @@ fun LoadInformationGames(
             .fillMaxSize()
     ) {
         items(listGames) { game ->
-            GameItem(game) { selectGame ->
+            GameItem(game, viewModel) { selectGame ->
                 navController.navigate(
                     "gameDetail/${selectGame.id}"
                 )
@@ -105,8 +112,10 @@ fun getFilteredGames(searchText: String, games: List<Game>): List<Game> {
     }.value
 }
 
-//@Preview(showBackground = true)
-//@Composable
-//fun DashboardScreenPreview() {
-//    DashboardScreen(navController = rememberNavController())
-//}
+@Composable
+fun ExitApp(context: Context) {
+    // Close the app
+    BackHandler {
+        (context as? Activity)?.finish()
+    }
+}

@@ -27,4 +27,13 @@ class DashboardViewModel(private val gameDatabaseRepository: GameDataBaseReposit
             }
         }
     }
+
+    fun deleteGame(updateGame: Game) {
+        viewModelScope.launch {
+            gameDatabaseRepository.deleteGame(gameMapper.mapGameToEntity(updateGame))
+            gameDatabaseRepository.getAllGames().collect { gameEntities ->
+                _games.value = gameMapper.mapEntitiesToGames(gameEntities)
+            }
+        }
+    }
 }
